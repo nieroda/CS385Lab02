@@ -24,6 +24,7 @@ cleandangling:
 clean:
 	docker stop mysql | true
 	docker stop minibank | true
+	docker stop minibankslim | true
 	#docker container rm $(docker container ls -a -q)
 	#docker image rm $(docker image ls -a -q)
 	#docker network rm $(docker network ls -q)

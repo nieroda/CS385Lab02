@@ -25,6 +25,19 @@ func (r Registration) ToJSON() string {
 }
 
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
+	//err := models.Database.PingContext()
+	 //if err != nil {
+	 //w.WriteHeader(http.StatusServiceUnavailable)
+	//	w.Write([]byte("Database Error."))
+	//	return
+	//}
+	err := models.Database.Ping()
+	if err != nil {
+		w.WriteHeader(http.StatusServiceUnavailable)
+		w.Write([]byte("Database Error."))
+		return
+	}
+
 	if r.Method == http.MethodPost {
 		body, err := ioutil.ReadAll(r.Body)
 		if err != nil {
